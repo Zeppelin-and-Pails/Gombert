@@ -10,17 +10,23 @@ uses 0.39 x (words/sentences) + 11.8 x (syllables/words) - 15.59
 @author     KMR
 @licence    http://www.wtfpl.net
 """
+import re
 import math
 import textifier
 
-class fleschkincaid:
+class fleschkincaid_level:
+    tex = textifier.textifier()
+
+    def __init__(self):
+        print "Flesch-Kincaid level"
+
     def process(self, text):
-        syl = textifier.syllables(text);
+        syl = self.tex.syllables(text);
 
         words = text.lower().strip(".:;?!")
         words = re.compile("[\s\W]+").split(words)
 
-        sentences = textifier.sentences(text)
+        sentences = self.tex.sentences(text)
 
 
 

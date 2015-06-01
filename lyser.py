@@ -20,10 +20,12 @@ class lyser:
         self.config = conf
         for stat in self.config['use_stats']:
             try:
-                print stat
-                stats[stat] = importlib.import_module("stats.{}".format(stat))
+                if self.config['debug']:
+                    print stat
+                self.stats[stat] = importlib.import_module("stats.{}".format(stat))
             except ImportError:
-                print ":["
+                if self.config['debug']:
+                    print ":["
                 sys.exit(1)
 
         if self.config['debug']:
@@ -32,10 +34,14 @@ class lyser:
     def getAllStats(self, text):
         stat_dict = {}
 
-        for key in stats:
-            stat_dict[key] = stats[key].getStats(text)
+        for key in self.stats:
+            if self.config['debug']:
+                print "key - {} \n".format(self.stats[key])
+            class_ = getattr(self.stats[key], key)
+            instance = class_()
+            stat_dict[key] = instance.process(text)
 
         return stat_dict
 
     def getStats(self, method, text):
-        return method * text
+        return {method: self.stats[method].process(text)}

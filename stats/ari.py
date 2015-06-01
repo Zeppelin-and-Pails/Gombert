@@ -10,3 +10,14 @@ uses 4.71 x (characters/words) + 0.5 x (words/sentences) - 21.43
 @author     KMR
 @licence    http://www.wtfpl.net
 """
+import math
+import textifier
+
+class ari:
+    def __init__(self):
+        pass
+
+    def process(self, text):
+
+
+        return "hello"

@@ -10,3 +10,13 @@ uses 1.0430 x sqrt( 30 x complexWords/sentences ) + 3.1291
 @author     KMR
 @licence    http://www.wtfpl.net
 """
+import math
+import textifier
+
+class smog:
+    def __init__(self):
+        pass
+
+    def process(self, text):
+
+        return "hello"

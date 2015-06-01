@@ -10,3 +10,13 @@ uses 5.89 x (characters/words) - 0.3 x (sentences/words) - 15.8
 @author     KMR
 @licence    http://www.wtfpl.net
 """
+import math
+import textifier
+
+class colemanliau:
+    def __init__(self):
+        print "Coleman Liau!"
+
+    def process(self, text):
+
+        return "hello"

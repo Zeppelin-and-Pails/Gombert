@@ -12,7 +12,9 @@ Stats package, given a body of text returns an approximate count of syllables (>
 import re
 import math
 
-class syllables:
+class textifier:
+    def __init__(self):
+        pass
 
     def sentences(self, text):
 
@@ -31,7 +33,7 @@ class syllables:
         words = re.compile("[\s\W]+").split(words)
         syl_total = {}
 
-        count = {"a":0, "b":0}
+        count = {"a":0, "b":0, "c":0}
         for word in words:
             # First lets try one way
             a = 0
@@ -40,7 +42,7 @@ class syllables:
             for index in range(1,len(word)):
                 if words[index] in vowels and words[index-1] not in vowels:
                     a += 1
-            if (words.endswith('e') and  not words.endswith('le')):
+            if (word.endswith('e') and  not word.endswith('le')):
                 a -= 1
             if len(word) == 1:
                 a = 1
@@ -51,10 +53,10 @@ class syllables:
             AddSyl = ["ia", "riet", "dien", "iu", "io", "ii", "[aeiou]{3}", "^mc", "ism$",
                       "[^aeiouy]{2}l$", "[^l]lien", "^coa[dglx].", "[^gq]ua[^auieo]", "dnt$"]
 
-            if (word.endsWith("e")):
-                word = word.substring(0, word.length() - 1);
+            #if (word.endsWith("e")):
+            #    word = word.substring(0, word.length() - 1);
 
-            phonems = re.compile(r"[^aeiouy]+").split(b)
+            phonems = re.compile(r"[^aeiouy]+").split(word)
 
             b = 0
             for not_syl in SubSyl:

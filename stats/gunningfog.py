@@ -10,3 +10,13 @@ uses 0.4 x ( (words/sentences) + 100 x (complexWords/words) )
 @author     KMR
 @licence    http://www.wtfpl.net
 """
+import math
+import textifier
+
+class gunningfog:
+    def __init__(self):
+        pass
+
+    def process(self, text):
+
+        return "hello"

@@ -10,10 +10,14 @@ uses 206.835 - 1.015 x (words/sentences) - 84.6 x (syllables/words)
 @author     KMR
 @licence    http://www.wtfpl.net
 """
+import re
 import math
 import textifier
 
-class fleschkincaid:
+class fleschkincaid_ease:
+    def __init__(self):
+        pass
+
     def process(self, text):
         syl = textifier.syllables(text);
 
