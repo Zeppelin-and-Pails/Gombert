@@ -18,7 +18,7 @@ class textifier:
 
     def sentences(self, text):
 
-        text = re.sub(r'\s(?:dr.|mr.|bro.|mrs.|ms.|jr.|sr.|i.e.|e.g.|vs.)', text.lower())
+        text = re.sub(r'\s(?:dr.|mr.|bro.|mrs.|ms.|jr.|sr.|i.e.|e.g.|vs.)', "two" , text.lower())
 
         return len(re.split(r'\w[\.\?!][\'"\)\]]* *', text))
 

@@ -15,16 +15,18 @@ import math
 import textifier
 
 class fleschkincaid_ease:
+    tex = textifier.textifier()
+
     def __init__(self):
         pass
 
     def process(self, text):
-        syl = textifier.syllables(text);
+        syl = self.tex.syllables(text);
 
         words = text.lower().strip(".:;?!")
         words = re.compile("[\s\W]+").split(words)
 
-        sentences = textifier.sentences(text)
+        sentences = self.tex.sentences(text)
 
 
         return "hello"
