@@ -10,13 +10,22 @@ uses 0.4 x ( (words/sentences) + 100 x (complexWords/words) )
 @author     KMR
 @licence    http://www.wtfpl.net
 """
-import math
 import textifier
 
 class gunningfog:
+    tex = None
+
     def __init__(self):
-        pass
+        self.tex = textifier.textifier()
 
     def process(self, text):
+        syl = self.tex.syllables(text)
+        complex = 0
+        for count in syl['counts']:
+            if count > 2:
+                complex += syl['counts'][count]
 
-        return "hello"
+        words = self.tex.words(text)
+        sentences = self.tex.sentences(text)
+
+        return float("{0:.4f}".format(0.4 * ((words/sentences) + 100 * (complex/words))))

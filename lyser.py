@@ -17,7 +17,9 @@ class lyser:
     stats  = {}
 
     def __init__(self, conf):
+        # Assign the config
         self.config = conf
+        # For each stat package definined in the config import it
         for stat in self.config['use_stats']:
             try:
                 if self.config['debug']:
@@ -25,7 +27,7 @@ class lyser:
                 self.stats[stat] = importlib.import_module("stats.{}".format(stat))
             except ImportError:
                 if self.config['debug']:
-                    print ":["
+                    print "import failed :["
                 sys.exit(1)
 
         if self.config['debug']:
@@ -33,10 +35,8 @@ class lyser:
 
     def getAllStats(self, text):
         stat_dict = {}
-
+        # For each of the stats packages loaded cycle through and get the details
         for key in self.stats:
-            if self.config['debug']:
-                print "key - {} \n".format(self.stats[key])
             class_ = getattr(self.stats[key], key)
             instance = class_()
             stat_dict[key] = instance.process(text)
@@ -44,4 +44,8 @@ class lyser:
         return stat_dict
 
     def getStats(self, method, text):
-        return {method: self.stats[method].process(text)}
+        if self.config['debug']:
+            print "/method/{} called".format(method)
+        class_ = getattr(self.stats[method], method)
+        instance = class_()
+        return {method: instance.process(text)}

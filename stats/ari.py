@@ -10,14 +10,17 @@ uses 4.71 x (characters/words) + 0.5 x (words/sentences) - 21.43
 @author     KMR
 @licence    http://www.wtfpl.net
 """
-import math
 import textifier
 
 class ari:
+    tex = None
+
     def __init__(self):
-        pass
+        self.tex = textifier.textifier()
 
     def process(self, text):
+        words = self.tex.words(text)
+        sentences = self.tex.sentences(text)
+        chars = len(text.lower().strip("\s"))
 
-
-        return "hello"
+        return float("{0:.4f}".format((4.71 * (chars/words)) + (0.5 * (words/sentences)) - 21.43))

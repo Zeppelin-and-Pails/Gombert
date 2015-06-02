@@ -10,23 +10,17 @@ uses 206.835 - 1.015 x (words/sentences) - 84.6 x (syllables/words)
 @author     KMR
 @licence    http://www.wtfpl.net
 """
-import re
-import math
 import textifier
 
 class fleschkincaid_ease:
-    tex = textifier.textifier()
+    tex = None
 
     def __init__(self):
-        pass
+        self.tex = textifier.textifier()
 
     def process(self, text):
-        syl = self.tex.syllables(text);
-
-        words = text.lower().strip(".:;?!")
-        words = re.compile("[\s\W]+").split(words)
-
+        syl = self.tex.syllables(text)['total']
+        words = self.tex.words(text)
         sentences = self.tex.sentences(text)
 
-
-        return "hello"
+        return float("{0:.4f}".format(206.835 - (1.015 * (words/sentences)) - (84.6 * (syl/words))))

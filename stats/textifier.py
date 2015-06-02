@@ -8,7 +8,6 @@ Stats package, given a body of text returns an approximate count of syllables (>
 @author     KMR
 @licence    http://www.wtfpl.net
 """
-
 import re
 import math
 
@@ -17,10 +16,15 @@ class textifier:
         pass
 
     def sentences(self, text):
-
+        # Work out how many sentences there are
         text = re.sub(r'\s(?:dr.|mr.|bro.|mrs.|ms.|jr.|sr.|i.e.|e.g.|vs.)', "two" , text.lower())
-
         return len(re.split(r'\w[\.\?!][\'"\)\]]* *', text))
+
+    def words(self, text):
+        # Find out how many words there are
+        words = text.lower().strip(".:;?!-")
+        words = re.compile("[\s\W]+").split(words)
+        return len(words)
 
     def syllables(self, text):
         # Get the easy stuff out of the way first
@@ -97,7 +101,7 @@ class textifier:
                         max += 1
 
                 on_vowel = is_vowel
-                lastchar = c
+                lastchar = char
 
             # Some special cases:
             if word[-1] == 'e':
