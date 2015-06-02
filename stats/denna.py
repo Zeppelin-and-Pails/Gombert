@@ -3,6 +3,8 @@ Denna
 
 A stats generation package, given a body of text will return a readability score
 
+An attempt at creating a readability index for song lyrics
+
 uses 0.39 x (words/unique words > 3 characters) + 11.8 x (syllables/words) - 15.59
 
 @category   Utility
