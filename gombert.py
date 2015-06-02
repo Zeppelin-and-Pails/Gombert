@@ -17,7 +17,6 @@ import lyser
 
 from flask import Flask, request, jsonify, abort as flask_abort
 
-
 #Work out where we are
 DIR = os.path.dirname(os.path.realpath(__file__))
 
@@ -45,13 +44,15 @@ def all():
 
 @app.route("/method/<method>", methods=['POST'])
 def method(method):
-    #Get the text from the body, so we can deal with it
-    text = request.form['text']
-    #Deal with the text
-    details = analyser.getStats(method, text)
-    #return the resultant dict
-    return jsonify(details)
-
+    if request.form:
+        #Get the text from the body, so we can deal with it
+        text = request.form['text']
+        #Deal with the text
+        details = analyser.getStats(method, text)
+        #return the resultant dict
+        return jsonify(details)
+    else:
+        flask_abort(400)
 
 if config['debug']:
     app.debug = True
