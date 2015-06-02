@@ -28,4 +28,4 @@ class smog:
 
         sentences = self.tex.sentences(text)
 
-        return float("{0:.4f}".format((1.0430 * math.sqrt(30 * (complex/sentences))) + 3.1291))
+        return float("{0:.4f}".format((1.0430 * math.sqrt(30 * (complex/float(sentences)))) + 3.1291))

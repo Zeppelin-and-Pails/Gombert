@@ -19,8 +19,8 @@ class colemanliau:
         self.tex = textifier.textifier()
 
     def process(self, text):
-        words = self.tex.words(text)
-        sentences = self.tex.sentences(text)
-        chars = len(text.lower().strip("\s"))
+        stats = self.tex.basic_stats(text)
+        char_pw = ((5.89 * stats["characters (alphanumeric only)"]) / float(stats["words"]))
+        sentences_pw = ((29.6 * stats["sentences"]) / float(stats["words"]))
 
-        return float("{0:.4f}".format(((5.89*chars)/float(words)) - ((29.6*sentences)/float(words)) - 15.8))
+        return float("{0:.4f}".format(char_pw - sentences_pw - 15.8))

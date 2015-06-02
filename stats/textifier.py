@@ -15,6 +15,18 @@ class textifier:
     def __init__(self):
         pass
 
+    def basic_stats(self, text):
+        stats = {}
+
+        stats["characters"] = len(text)
+        stats["characters (no spaces)"] = len(re.compile(r'[\s]+').sub('', text))
+        stats["characters (alphanumeric only)"] = len(re.compile(r'[\W]+').sub('', text))
+        stats["words"] = self.words(text)
+        stats["sentences"] = self.sentences(text)
+        stats["syllables"] = self.syllables(text)
+
+        return stats
+
     def sentences(self, text):
         # Work out how many sentences there are
         text = re.sub(r'\s(?:dr.|mr.|bro.|mrs.|ms.|jr.|sr.|i.e.|e.g.|vs.)', "two" , text.lower())
@@ -22,7 +34,7 @@ class textifier:
 
     def words(self, text):
         # Find out how many words there are
-        words = text.lower().strip(".:;?!-")
+        words = re.compile(r'[\W]+').sub(' ', text.lower())
         words = re.compile("[\s\W]+").split(words)
         return len(words)
 
@@ -44,7 +56,7 @@ class textifier:
             if word[0] in vowels:
                 a += 1
             for index in range(1,len(word)):
-                if words[index] in vowels and words[index-1] not in vowels:
+                if word[index] in vowels and word[index-1] not in vowels:
                     a += 1
             if (word.endswith('e') and  not word.endswith('le')):
                 a -= 1

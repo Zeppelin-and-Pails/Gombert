@@ -19,8 +19,9 @@ class fleschkincaid_level:
         self.tex = textifier.textifier()
 
     def process(self, text):
-        syl = self.tex.syllables(text)['total']
-        words = self.tex.words(text)
-        sentences = self.tex.sentences(text)
+        stats = self.tex.basic_stats(text)
 
-        return float("{0:.4f}".format((0.39 * (words/sentences)) + (11.8 * (syl/words)) - 15.59))
+        words_ps = 0.39 * (stats["words"] / float(stats["sentences"]))
+        syl_pw = 11.8 * (stats["syllables"]['total'] / float(stats["words"]))
+
+        return float("{0:.4f}".format( words_ps + syl_pw - 15.59))

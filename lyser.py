@@ -11,6 +11,7 @@ Get stats on a body of text based on analysis packages
 __version__ = "1.1.1"
 
 import importlib
+import stats.textifier
 
 class lyser:
     config = None
@@ -35,6 +36,10 @@ class lyser:
 
     def getAllStats(self, text):
         stat_dict = {}
+        # Get the general stats for the text
+        tex = stats.textifier.textifier()
+        stat_dict["details"] = tex.basic_stats(text)
+
         # For each of the stats packages loaded cycle through and get the details
         for key in self.stats:
             class_ = getattr(self.stats[key], key)

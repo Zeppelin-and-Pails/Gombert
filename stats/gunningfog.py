@@ -28,4 +28,4 @@ class gunningfog:
         words = self.tex.words(text)
         sentences = self.tex.sentences(text)
 
-        return float("{0:.4f}".format(0.4 * ((words/sentences) + 100 * (complex/words))))
+        return float("{0:.4f}".format(0.4 * ((words/float(sentences)) + 100 * (complex/float(words)))))

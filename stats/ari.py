@@ -10,6 +10,7 @@ uses 4.71 x (characters/words) + 0.5 x (words/sentences) - 21.43
 @author     KMR
 @licence    http://www.wtfpl.net
 """
+import re
 import textifier
 
 class ari:
@@ -19,8 +20,9 @@ class ari:
         self.tex = textifier.textifier()
 
     def process(self, text):
-        words = self.tex.words(text)
-        sentences = self.tex.sentences(text)
-        chars = len(text.lower().strip("\s"))
+        stats = self.tex.basic_stats(text)
+        char_pw = 4.71 * (stats["characters (no spaces)"] / float(stats["words"]))
+        words_ps = 0.5 * (stats["words"] / float(stats["sentences"]))
 
-        return float("{0:.4f}".format((4.71 * (chars/words)) + (0.5 * (words/sentences)) - 21.43))
+
+        return float("{0:.4f}".format(char_pw + words_ps - 21.43))
