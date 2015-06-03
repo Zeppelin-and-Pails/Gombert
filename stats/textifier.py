@@ -22,6 +22,7 @@ class textifier:
         stats["characters (no spaces)"] = len(re.compile(r'[\s]+').sub('', text))
         stats["characters (alphanumeric only)"] = len(re.compile(r'[\W]+').sub('', text))
         stats["words"] = self.words(text)
+        stats["unique words"] = self.unique_words(text)
         stats["sentences"] = self.sentences(text)
         stats["syllables"] = self.syllables(text)
 
@@ -37,6 +38,15 @@ class textifier:
         words = re.compile(r'[\W]+').sub(' ', text.lower())
         words = re.compile("[\s\W]+").split(words)
         return len(words)
+
+    def unique_words(self, text):
+        words = re.compile(r'[\W]+').sub(' ', text.lower())
+        words = re.compile("[\s\W]+").split(words)
+        seen = set()
+        seen_add = seen.add
+        uWords = [ x for x in words if not (x in seen or seen_add(x))]
+
+        return uWords
 
     def syllables(self, text):
         # Get the easy stuff out of the way first
