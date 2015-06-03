@@ -22,7 +22,6 @@ class textifier:
         stats["characters (no spaces)"] = len(re.compile(r'[\s]+').sub('', text))
         stats["characters (alphanumeric only)"] = len(re.compile(r'[\W]+').sub('', text))
         stats["words"] = self.words(text)
-        stats["unique words"] = self.unique_words(text)
         stats["sentences"] = self.sentences(text)
         stats["syllables"] = self.syllables(text)
 

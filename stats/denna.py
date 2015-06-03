@@ -23,7 +23,7 @@ class denna:
     def process(self, text):
         stats = self.tex.basic_stats(text)
 
-        uniqueWords = filter(lambda x: len(x) > 3, stats["unique words"])
+        uniqueWords = filter(lambda x: len(x) > 3, self.tex.unique_words(text))
         words_ps = 0.39 * (stats["words"] / float(len(uniqueWords)))
         syl_pw = 11.8 * (stats["syllables"]['total'] / float(stats["words"]))
 
