@@ -54,12 +54,15 @@ class textifier:
 
         # If we've been given something substantial lets churn through it.
         vowels = 'aeiouy'
-        words = text.lower().strip(".:;?!")
-        words = re.compile("[\s\W]+").split(words)
+        words = re.compile("[\W]+").sub('', text.lower().strip())
+        words = re.compile("[\s]+").split(words)
         syl_total = {}
 
         count = {"a":0, "b":0, "c":0}
         for word in words:
+            if not len(word):
+                continue
+
             # First lets try one way
             a = 0
             if word[0] in vowels:
