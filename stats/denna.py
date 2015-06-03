@@ -8,9 +8,9 @@ An attempt at creating a readability index for song lyrics
 uses 0.39 x (words/unique words > 3 characters) + 11.8 x (syllables/words)
 
 @category   Utility
-@version    $ID: 1.1.1, 2015-05-30 17:00:00 CST $;
-@author     Jason
-@licence    http://www.wtfpl.net
+@version    $Id: 0.1.0, 2015-06-03 13:32:04 ACST $;
+@author      Jason
+@licence    GNU GPL v3
 """
 import textifier
 class denna:

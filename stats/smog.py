@@ -6,9 +6,9 @@ A stats generation package, given a body of text will return a readability score
 uses 1.0430 x sqrt( 30 x complexWords/sentences ) + 3.1291
 
 @category   Utility
-@version    $ID: 1.1.1, 2015-05-30 17:00:00 CST $;
+@version    $Id: 0.1.0, 2015-06-03 13:32:04 ACST $;
 @author     KMR
-@licence    http://www.wtfpl.net
+@licence    GNU GPL v3
 """
 import math
 import textifier

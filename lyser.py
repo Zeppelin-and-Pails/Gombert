@@ -4,9 +4,9 @@ lyser
 Get stats on a body of text based on analysis packages
 
 @category   Utility
-@version    $ID: 1.1.1, 2015-05-30 17:00:00 CST $;
-@author     KMR
-@licence    http://www.wtfpl.net
+@version    $Id: 0.1.0, 2015-06-03 13:32:04 ACST $;
+@author     KMR, Jason
+@licence    GNU GPL v3
 """
 __version__ = "1.1.1"
 

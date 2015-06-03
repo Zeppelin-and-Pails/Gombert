@@ -4,9 +4,9 @@ Gombert - readability analysis api
 Get readability stats for any block of text that can be passed in
 
 @category   Utility
-@version    $ID: 1.1.1, 2015-05-30 17:00:00 CST $;
-@author     KMR
-@licence    http://www.wtfpl.net
+@version    $Id: 0.1.0, 2015-06-03 13:32:04 ACST $;
+@author     KMR, Jason
+@licence    GNU GPL v3
 """
 __version__ = "1.1.1"
 
