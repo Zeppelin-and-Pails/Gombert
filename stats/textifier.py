@@ -54,8 +54,8 @@ class textifier:
 
         # If we've been given something substantial lets churn through it.
         vowels = 'aeiouy'
-        words = re.compile("[\W]+").sub('', text.lower().strip())
-        words = re.compile("[\s]+").split(words)
+        words = text.lower().strip()
+        words = re.compile("[\s\W]+").split(words)
         syl_total = {}
 
         count = {"a":0, "b":0, "c":0}
@@ -137,6 +137,8 @@ class textifier:
             count['c'] += c
 
             combined = math.ceil((a + b + c) / 3)
+
+            #combined = 1 if combined < 1
             if combined in syl_total:
                 syl_total[combined] += 1
             else :
