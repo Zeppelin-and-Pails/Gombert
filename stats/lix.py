@@ -33,7 +33,5 @@ class lix:
 
         words_pp = (words / periods) if periods > 0 else 0
         long_pw = (100 * len(longwords) / words)
-        print words_pp
-        print long_pw
 
         return int("{0:.0f}".format(words_pp + long_pw))
