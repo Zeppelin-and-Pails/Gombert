@@ -29,15 +29,15 @@ class textifier:
 
     def sentences(self, text):
         # Work out how many sentences there are
-        text = re.sub(r'\s(?:dr.|mr.|bro.|mrs.|ms.|jr.|sr.|i.e.|e.g.|vs.)', "two" , text.lower())
-        return len(re.split(r'\w[\.\?!][\'"\)\]]* *', text))
+        words = re.sub(r'\s(?:dr.|mr.|bro.|mrs.|ms.|jr.|sr.|i.e.|e.g.|vs.)', "two" , text.lower())
+        words = words.strip()
+        return len(re.compile(r'\w[\.\?!]+[\'"\)\]]*').findall(words))
 
     def words(self, text):
         # Find out how many words there are
         words = re.compile(r'[\W]+').sub(' ', text.lower())
         words = words.strip()
-        words = re.compile("[\s]+").split(words)
-        return len(words)
+        return len(re.compile("[\s]+").split(words))
 
     def unique_words(self, text):
         words = re.compile(r'[\W]+').sub(' ', text.lower())
