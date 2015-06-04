@@ -35,7 +35,8 @@ class textifier:
     def words(self, text):
         # Find out how many words there are
         words = re.compile(r'[\W]+').sub(' ', text.lower())
-        words = re.compile("[\s\W]+").split(words)
+        words = words.strip()
+        words = re.compile("[\s]+").split(words)
         return len(words)
 
     def unique_words(self, text):
@@ -54,15 +55,13 @@ class textifier:
 
         # If we've been given something substantial lets churn through it.
         vowels = 'aeiouy'
-        words = re.compile("[\W]+").sub('', text.lower().strip())
+        words = re.compile("[\W]+").sub(' ', text.lower().strip())
+        words = words.strip()
         words = re.compile("[\s]+").split(words)
         syl_total = {}
 
         count = {"a":0, "b":0, "c":0}
         for word in words:
-            if not len(word):
-                continue
-
             # First lets try one way
             a = 0
             if word[0] in vowels:
@@ -141,6 +140,5 @@ class textifier:
                 syl_total[combined] += 1
             else :
                 syl_total[combined] = 1
-
         # Mash them together and hope for the best
         return {"total" : math.ceil((count['a'] + count['b'] + count['c']) / 3), "counts" : syl_total}
