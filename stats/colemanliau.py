@@ -6,7 +6,7 @@ A stats generation package, given a body of text will return a readability score
 uses ( 0.0588 x (( characters / words ) x 100 ) - ( 0.296 x (( sentences / words ) * 100 ) - 15.8
 
 @category   Utility
-@version    $Id: 0.1.0, 2015-06-03 13:32:04 ACST $;
+@version    $Id: 0.1.1, 2015-06-03 16:48:47 ACST $;
 @author     KMR
 @licence    GNU GPL v3
 """

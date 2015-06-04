@@ -4,7 +4,7 @@ lyser
 Get stats on a body of text based on analysis packages
 
 @category   Utility
-@version    $Id: 0.1.0, 2015-06-03 13:32:04 ACST $;
+@version    $Id: 0.1.1, 2015-06-03 16:48:47 ACST $;
 @author     KMR, Jason
 @licence    GNU GPL v3
 """

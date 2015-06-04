@@ -136,6 +136,8 @@ class textifier:
             count['c'] += c
 
             combined = math.ceil((a + b + c) / 3)
+
+            #combined = 1 if combined < 1
             if combined in syl_total:
                 syl_total[combined] += 1
             else :
