@@ -19,17 +19,29 @@ class denna:
     def __init__(self):
         self.tex = textifier.textifier()
 
-    def process(self, text):
-        stats = self.tex.basic_stats(text)
-        syl = self.tex.syllables(text)
-        uniqueWords = filter(lambda x: len(x) > 3, self.tex.unique_words(text))
-
+    def findPolysyllables(self, syllables):
         polysyllables = 0
-        for count in syl['counts']:
+        for count in syllables['counts']:
             if count > 2:
-                polysyllables += syl['counts'][count]
+                polysyllables += syllables['counts'][count]
 
+        return polysyllables
 
-        uw = (len(uniqueWords) / stats["words"]) + polysyllables
-     
-        return float("{0:.4f}".format( uw ))
+    def determinRepetition(self, text):
+        return 1
+
+    def determinSongLength(self, text):
+        return 1
+
+    def process(self, text):
+        stats           = self.tex.basic_stats(text)
+        syl             = self.tex.syllables(text)
+        uniqueWords     = filter(lambda x: len(x) > 3, self.tex.unique_words(text))
+        polysyllables   = self.findPolysyllables(syl)
+        repetition      = self.determinRepetition(text)
+        songLength      = self.determinSongLength(text)
+        syllables       = 1
+
+        return 1
+
+        #return float("{0:.4f}".format( ( len(uniqueWords) / stats["words"] ) / ( syllables /  1 + polysyllables ) * ( 12 + ( repetition / songLength ) * 10 ) ))
