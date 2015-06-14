@@ -54,9 +54,5 @@ def method(method):
     else:
         flask_abort(400)
 
-if config['debug']:
-    app.debug = True
-    app.run()
-else:
-    app.debug = False
-    app.run(host=config['host'], port=config['port'])
+app.debug = True if config['debug'] else False
+app.run(host=config['host'], port=config['port'])
