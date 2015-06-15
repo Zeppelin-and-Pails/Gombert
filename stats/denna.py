@@ -8,7 +8,7 @@ An attempt at creating a readability index for song lyrics
 
 @category   Utility
 @version    $Id: 0.1.1, 2015-06-03 16:48:47 ACST $;
-@author      Jason
+@author     Jason
 @licence    GNU GPL v3
 """
 import textifier

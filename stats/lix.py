@@ -10,7 +10,7 @@ uses (words / periods) + (longWords x 100 / words)
 
 @category   Utility
 @version    $Id: 0.1.0, 2015-06-03 13:32:04 ACST $;
-@author      Jason
+@author     Jason
 @licence    GNU GPL v3
 """
 import re
