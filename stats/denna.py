@@ -114,9 +114,9 @@ class denna:
         stats           = self.tex.basic_stats(text)
         syl             = self.tex.syllables(text)
         uniqueWords     = filter(lambda x: len(x) > 3, self.tex.unique_words(text))
-        polysyllables   = self.findPolysyllables(syl)
-        repetition      = self.determinRepetition(text)
-        songLength      = self.determinSongLength(text)
-        syllables       = syl['total']
+        polysyllables   = float(self.findPolysyllables(syl))
+        repetition      = float(self.determinRepetition(text))
+        songLength      = float(self.determinSongLength(text))
+        syllables       = float(syl['total'])
 
-        return float("{0:.4f}".format( ( len(uniqueWords) / stats["words"] ) / ( syllables /  1 + polysyllables ) * ( 12 + ( repetition / songLength ) * 10 ) ))
+        return float("{0:.4f}".format( ((( float( len(uniqueWords) ) / float( stats["words"] ) ) / ( syllables / (1 + polysyllables) )) * (12.0 + ( repetition / songLength) )) * 100 ) )
