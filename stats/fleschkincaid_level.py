@@ -21,7 +21,11 @@ class fleschkincaid_level:
     def process(self, text):
         stats = self.tex.basic_stats(text)
 
-        words_ps = 0.39 * (stats["words"] / float(stats["sentences"]))
-        syl_pw = 11.8 * (stats["syllables"]['total'] / float(stats["words"]))
+        try:
+            words_ps = 0.39 * (stats["words"] / float(stats["sentences"]))
+            syl_pw = 11.8 * (stats["syllables"]['total'] / float(stats["words"]))
+            results =  words_ps + syl_pw - 15.59
+        except:
+            results = 0
 
-        return float("{0:.4f}".format( words_ps + syl_pw - 15.59))
+        return float("{0:.4f}".format(results))

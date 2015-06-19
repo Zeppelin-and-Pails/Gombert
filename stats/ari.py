@@ -21,8 +21,11 @@ class ari:
 
     def process(self, text):
         stats = self.tex.basic_stats(text)
-        char_pw = 4.71 * (stats["characters (no spaces)"] / float(stats["words"]))
-        words_ps = 0.5 * (stats["words"] / float(stats["sentences"]))
+        try:
+            char_pw = 4.71 * (stats["characters (no spaces)"] / float(stats["words"]))
+            words_ps = 0.5 * (stats["words"] / float(stats["sentences"]))
+            results = char_pw + words_ps - 21.43
+        except:
+            results = 0
 
-
-        return float("{0:.4f}".format(char_pw + words_ps - 21.43))
+        return float("{0:.4f}".format(results))

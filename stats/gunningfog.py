@@ -25,7 +25,11 @@ class gunningfog:
             if count > 2:
                 complex += syl['counts'][count]
 
-        words = self.tex.words(text)
-        sentences = self.tex.sentences(text)
+        try:
+            words = self.tex.words(text)
+            sentences = self.tex.sentences(text)
+            results = 0.4 * ((words/float(sentences)) + 100 * (complex/float(words)))
+        except:
+            results = 0
 
-        return float("{0:.4f}".format(0.4 * ((words/float(sentences)) + 100 * (complex/float(words)))))
+        return float("{0:.4f}".format(results))

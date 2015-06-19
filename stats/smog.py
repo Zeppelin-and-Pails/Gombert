@@ -21,11 +21,16 @@ class smog:
 
     def process(self, text):
         syl = self.tex.syllables(text)
-        complex = 0
-        for count in syl['counts']:
-            if count > 2:
-                complex += syl['counts'][count]
+        try:
+            complex = 0
+            for count in syl['counts']:
+                if count > 2:
+                    complex += syl['counts'][count]
 
-        sentences = self.tex.sentences(text)
+            sentences = self.tex.sentences(text)
 
-        return float("{0:.4f}".format((1.0430 * math.sqrt(30 * (complex/float(sentences)))) + 3.1291))
+            results = (1.0430 * math.sqrt(30 * (complex/float(sentences)))) + 3.1291
+        except:
+            results = 0
+
+        return float("{0:.4f}".format(results))

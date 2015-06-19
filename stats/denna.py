@@ -113,10 +113,17 @@ class denna:
     def process(self, text):
         stats           = self.tex.basic_stats(text)
         syl             = self.tex.syllables(text)
-        uniqueWords     = filter(lambda x: len(x) > 3, self.tex.unique_words(text))
-        polysyllables   = float(self.findPolysyllables(syl))
-        repetition      = float(self.determinRepetition(text))
-        songLength      = float(self.determinSongLength(text))
-        syllables       = float(syl['total'])
+        try:
+            uniqueWords     = filter(lambda x: len(x) > 3, self.tex.unique_words(text))
+            polysyllables   = float(self.findPolysyllables(syl))
+            repetition      = float(self.determinRepetition(text))
+            songLength      = float(self.determinSongLength(text))
+            syllables       = float(syl['total'])
 
-        return float("{0:.4f}".format( ((( float( len(uniqueWords) ) / float( stats["words"] ) ) / ( syllables / (1 + polysyllables) )) * (12.0 + ( repetition / songLength) )) * 100 ) )
+            d = ((( float( len(uniqueWords) ) / float( stats["words"] ) ) / ( syllables / (1 + polysyllables) )) * (12.0 + ( repetition / songLength) )) * 100
+        except ValueError:
+            d = 0
+        except:
+            d = 0
+
+        return float("{0:.4f}".format( d ) )

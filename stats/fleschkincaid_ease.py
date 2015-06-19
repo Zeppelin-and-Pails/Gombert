@@ -20,7 +20,12 @@ class fleschkincaid_ease:
 
     def process(self, text):
         stats = self.tex.basic_stats(text)
-        words_ps = 1.015 * (stats["words"] / float(stats["sentences"]))
-        syl_pw = 84.6 * (stats["syllables"]['total'] / float(stats["words"]))
 
-        return float("{0:.4f}".format(206.835 - words_ps - syl_pw))
+        try:
+            words_ps = 1.015 * (stats["words"] / float(stats["sentences"]))
+            syl_pw = 84.6 * (stats["syllables"]['total'] / float(stats["words"]))
+            results = 206.835 - words_ps - syl_pw
+        except:
+            results = 0
+
+        return float("{0:.4f}".format(results))
